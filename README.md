@@ -22,6 +22,10 @@ It supports basic arithmetic operations and evaluates expressions.
 - CSS3 – Styling and layout
 - JavaScript – Logic and functionality
 
+## Preview 
+<img width="618" height="574" alt="Screenshot_2" src="https://github.com/user-attachments/assets/00e067d6-3208-4f32-a7b8-cc3baf16dec5" />
+
+
 ## How to Run
 1. Clone the repository
 2. Open the project folder
