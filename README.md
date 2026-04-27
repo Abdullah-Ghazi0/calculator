@@ -1,6 +1,6 @@
 # Calculator 
 
-A simple, responsive calculator built using HTML, CSS, and JavaScript.
+A simple, responsive calculator built using HTML, CSS, and JavaScript.<br>
 It supports basic arithmetic operations and evaluates expressions.
 
 ## Features
@@ -46,6 +46,6 @@ This project uses JavaScript's eval() function to evaluate expressions.
 - Fix bugs and edge cases
 
 ## Author
-Abdullah Ghazi
-GitHub: https://github.com/Abdullah-Ghazi0
-LinkedIn: https://www.linkedin.com/in/abdullah-ghazi-5b5077390/
+Abdullah Ghazi <br>
+GitHub: https://github.com/Abdullah-Ghazi0 <br>
+LinkedIn: https://www.linkedin.com/in/abdullah-ghazi-5b5077390/ <br>

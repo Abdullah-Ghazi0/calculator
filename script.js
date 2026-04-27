@@ -8,6 +8,14 @@ let display = '';
 
 let expression = '';
 
+let opUsed = true;
+
+let pointAllowed = true;
+
+let lastChar = ''
+
+let validNumberUsed = false;
+
 // ----------Selecting Elements------------
 
 const keyboard = document.querySelector('#keyboard');
@@ -42,13 +50,56 @@ function updateUI() {
 // -----------Build Expression----------------
 
 function buildExp(e) {
-    char = e.target.textContent
+    char = e.target.textContent;
+
+    lastChar = expression.slice(-1);
+
+    !isNaN(char) && char !== '0' && (validNumberUsed = true);
+
+    operators.includes(char) ? (opUsed = true, validNumberUsed = false, pointAllowed = true): opUsed = false;
+
+    char === '.' && (pointAllowed = false);
+
+    if (expression === '' && !isNaN(char)) {
+        display = '';
+    }else if (expression === '' && isNaN(char)) {
+        expression = display;
+    }
+
+    if ((display === '0' || display === '') && char === '0') {
+        display = '0';
+        expression = '0';
+        updateUI();
+        return;
+    }
+
+    if (display === '0' && !isNaN(char) && char !== '0') {
+        display = '';
+        expression = '';
+    }
+
+
+    if (!validNumberUsed && lastChar === '0' && char === '0') {
+        return;
+    }
+
+    if (!pointAllowed && char == '.') {
+        return;
+    }
+
+    if (display === '' && operators.includes(char)) {
+        display = '0';
+    }
+
+    if (display === '0' && char === '-') {
+        display = ''
+    }
     display = display + char;
 
     char === '×' && (char = '*');
-    char === '÷' && (char = '/')
+    char === '÷' && (char = '/');
     expression = expression + char;
-    updateUI()
+    updateUI();
 };
 
 // -----------Delete Expression------------
@@ -58,6 +109,12 @@ function removeChar(e) {
     expression = expression.slice(0, -1);
     updateUI();
     display.length === 0 && (displayScreen.textContent = '0');
+
+    if (operators.includes(expression.slice(-1))) {
+        opUsed = true;
+        validNumberUsed = false;
+        pointAllowed = true;
+    }
     
 };
 
@@ -71,7 +128,8 @@ function clearDispaly(e) {
 
 function evaluate(){
     result = eval(expression);
-    display = result;
+
+    expression && (display = result);
     expression = '';
     updateUI();
 }
