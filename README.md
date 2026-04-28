@@ -12,9 +12,12 @@ It supports basic arithmetic operations and evaluates expressions.
     * Division (÷)
 - Expression evaluation
 - Clean and minimal user interface
+- Keyboard Input
 - Delete (DEL) and clear (AC) functionality
 - Handles common edge cases
 - Decimal number support
+- Round off small Decimal numbers and leading zeros
+- Display output in Scientific notation of very small or large numbers
 
 ## Tech Stack
 
@@ -46,7 +49,7 @@ This project uses JavaScript's eval() function to evaluate expressions.
 
 ## Future Improvements
 
-- Fix UI breaking bugs
+- Mobile Responsiveness
 
 ## Author
 Abdullah Ghazi <br>

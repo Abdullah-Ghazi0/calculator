@@ -45,6 +45,7 @@ function createButtons() {
 
 function updateUI() {
     displayScreen.textContent = display;
+    displayScreen.scrollLeft = displayScreen.scrollWidth;
 };
 
 // -----------Build Expression----------------
@@ -132,7 +133,8 @@ function clearAll(e) {
 
 function evaluate() {
     result = eval(expression);
-    
+    result = parseFloat(result.toPrecision(6))
+
     expression && (display = String(result));
     expression = '';
 

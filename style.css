@@ -21,9 +21,37 @@ body {
     font-family: 'Digital Numbers', sans-serif;
     font-size: 100px;
 
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: end;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.numberScreen {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: end;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.numberScreen::-webkit-scrollbar {
+    display: none; 
+}
+
+.displayscreen::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background: linear-gradient(to right, olive, transparent);
+    pointer-events: none;
 }
 
 .keypad {
