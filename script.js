@@ -58,8 +58,6 @@ function buildExp(e) {
 
     operators.includes(char) ? (opUsed = true, validNumberUsed = false, pointAllowed = true): opUsed = false;
 
-    char === '.' && (pointAllowed = false);
-
     if (expression === '' && !isNaN(char)) {
         display = '';
     }else if (expression === '' && isNaN(char)) {
@@ -128,7 +126,8 @@ function clearDispaly(e) {
 
 function evaluate(){
     result = eval(expression);
-
+    display.includes('.') && (pointAllowed = false);
+    
     expression && (display = result);
     expression = '';
     updateUI();
@@ -137,13 +136,20 @@ function evaluate(){
 // -----Zero Point---------------------
 
 function addpoint() {
+    if (!pointAllowed) return;
+
     if (display.length === 0) {
         expression = '0.';
         display = '0.';
-    }else {
+    }else if (operators.includes(expression.slice(-1))) {
+        expression = expression + '0.'
+        display = display + '0.'
+    }
+    else {
         expression = expression + '.';
         display = display + '.';
     }
+    pointAllowed = false;
     updateUI();
 }
 
