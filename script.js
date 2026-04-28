@@ -49,8 +49,12 @@ function updateUI() {
 
 // -----------Build Expression----------------
 
-function buildExp(e) {
+function addNoandOp(e) {
     char = e.target.textContent;
+    buildExp(char);
+};
+
+function buildExp(char) {
 
     lastChar = expression.slice(-1);
 
@@ -87,6 +91,7 @@ function buildExp(e) {
 
     if (display === '' && operators.includes(char)) {
         display = '0';
+        expression = '0'
     }
 
     if (display === '0' && char === '-') {
@@ -116,26 +121,29 @@ function removeChar(e) {
     
 };
 
-function clearDispaly(e) {
+function clearAll(e) {
     display = '';
     expression = '';
     displayScreen.textContent = '0';
+    pointAllowed = true
 }
 
 // --------Evaluate Expression------------
 
-function evaluate(){
+function evaluate() {
     result = eval(expression);
-    display.includes('.') && (pointAllowed = false);
     
-    expression && (display = result);
+    expression && (display = String(result));
     expression = '';
+
+    display.includes('.') ? pointAllowed = false: pointAllowed = true;
     updateUI();
 }
 
 // -----Zero Point---------------------
 
 function addpoint() {
+    console.log(pointAllowed)
     if (!pointAllowed) return;
 
     if (display.length === 0) {
@@ -167,14 +175,14 @@ function btnLooks(char, button) {
 
 function listnerAdding(btn) {
 
-    let eventFunc = buildExp;
+    let eventFunc = addNoandOp;
     
     if (btn.textContent === '=') {
         eventFunc = evaluate;
     }else if (btn.textContent === 'DEL') {
         eventFunc = removeChar;
     }else if (btn.textContent === 'AC') {
-        eventFunc = clearDispaly;
+        eventFunc = clearAll;
     }else if (btn.textContent === '.') {
         eventFunc = addpoint;
     }
@@ -182,5 +190,22 @@ function listnerAdding(btn) {
     btn.addEventListener('click', eventFunc);
 
 }
+
+document.addEventListener('keydown', (e)=> {
+    keyPressed = e.key;
+    
+    if (keyPressed === 'Enter') {
+        evaluate();
+        e.preventDefault();
+    } else if (keyPressed === 'Backspace') {
+        removeChar();
+    } else if (keyPressed === 'Escape') {
+        clearAll();
+    } else if (keyPressed === '.') {
+        addpoint();
+    } else if (operators.includes(keyPressed) || !isNaN(keyPressed)) {
+        buildExp(keyPressed);
+    }
+})
 
 createButtons();

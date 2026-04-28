@@ -46,8 +46,7 @@ This project uses JavaScript's eval() function to evaluate expressions.
 
 ## Future Improvements
 
-- Add keyboard input support
-- Fix bugs and edge cases
+- Fix UI breaking bugs
 
 ## Author
 Abdullah Ghazi <br>
