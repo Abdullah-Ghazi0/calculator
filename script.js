@@ -12,7 +12,7 @@ let opUsed = true;
 
 let pointAllowed = true;
 
-let lastChar = ''
+let lastChar = '';
 
 let validNumberUsed = false;
 
@@ -25,7 +25,7 @@ const displayScreen = document.querySelector('#display');
 // -----------Creating Initial UI----------
 
 function createButtons() {
-    for (ch of buttons) {
+    for (const ch of buttons) {
 
         const btn = document.createElement('button');
 
@@ -50,14 +50,14 @@ function updateUI() {
 
 // -----------Build Expression----------------
 
-function addNoandOp(e) {
-    char = e.target.textContent;
-    buildExp(char);
+function handleInput(e) {
+    let char = e.target.textContent;
+    appendToExpression(char);
 };
 
-function buildExp(char) {
+function appendToExpression(char) {
 
-    lastChar = expression.slice(-1);
+    lastChar = display.slice(-1);
 
     !isNaN(char) && char !== '0' && (validNumberUsed = true);
 
@@ -92,12 +92,18 @@ function buildExp(char) {
 
     if (display === '' && operators.includes(char)) {
         display = '0';
-        expression = '0'
+        expression = '0';
     }
 
     if (display === '0' && char === '-') {
-        display = ''
+        display = '';
     }
+
+    if (operators.includes(lastChar) && operators.includes(char)) {
+        display = display.slice(0, -1);
+        expression = expression.slice(0, -1);
+    }
+
     display = display + char;
 
     char === '×' && (char = '*');
@@ -109,6 +115,7 @@ function buildExp(char) {
 // -----------Delete Expression------------
 
 function removeChar(e) {
+    let charRemoved = display.slice(-1);
     display = display.slice(0, -1);
     expression = expression.slice(0, -1);
     updateUI();
@@ -119,6 +126,10 @@ function removeChar(e) {
         validNumberUsed = false;
         pointAllowed = true;
     }
+    if (charRemoved === '.') {
+        pointAllowed = true;
+
+    }
     
 };
 
@@ -126,14 +137,14 @@ function clearAll(e) {
     display = '';
     expression = '';
     displayScreen.textContent = '0';
-    pointAllowed = true
+    pointAllowed = true;
 }
 
 // --------Evaluate Expression------------
 
 function evaluate() {
-    result = eval(expression);
-    result = parseFloat(result.toPrecision(6))
+    let result = eval(expression);
+    result = parseFloat(result.toPrecision(6));
 
     expression && (display = String(result));
     expression = '';
@@ -151,8 +162,8 @@ function addpoint() {
         expression = '0.';
         display = '0.';
     }else if (operators.includes(expression.slice(-1))) {
-        expression = expression + '0.'
-        display = display + '0.'
+        expression = expression + '0.';
+        display = display + '0.';
     }
     else {
         expression = expression + '.';
@@ -176,7 +187,7 @@ function btnLooks(char, button) {
 
 function listnerAdding(btn) {
 
-    let eventFunc = addNoandOp;
+    let eventFunc = handleInput;
     
     if (btn.textContent === '=') {
         eventFunc = evaluate;
@@ -193,7 +204,7 @@ function listnerAdding(btn) {
 }
 
 document.addEventListener('keydown', (e)=> {
-    keyPressed = e.key;
+    let keyPressed = e.key;
     
     if (keyPressed === 'Enter') {
         evaluate();
@@ -205,15 +216,12 @@ document.addEventListener('keydown', (e)=> {
     } else if (keyPressed === '.') {
         addpoint();
     } else if (operators.includes(keyPressed) || !isNaN(keyPressed)) {
-        buildExp(keyPressed);
+        appendToExpression(keyPressed);
     } else if (keyPressed === '*') {
-        buildExp('×');
+        appendToExpression('×');
     } else if (keyPressed === '/') {
-        buildExp('÷');
+        appendToExpression('÷');
     }
 })
 
 createButtons();
-
-
-// fix divide and multiply keyboard buttons

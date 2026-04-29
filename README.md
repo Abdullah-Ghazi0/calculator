@@ -47,10 +47,6 @@ This project uses JavaScript's eval() function to evaluate expressions.
 - Works well for simple calculator functionality
 - Not recommended for production applications due to security risks
 
-## Future Improvements
-
-- Mobile Responsiveness
-
 ## Author
 Abdullah Ghazi <br>
 GitHub: https://github.com/Abdullah-Ghazi0 <br>
