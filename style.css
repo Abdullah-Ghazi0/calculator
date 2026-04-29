@@ -4,8 +4,8 @@ body {
 
 .mainBody {
     margin: 0 auto;
-    height: 95vh;
-    width: 900px;
+    height: 96vh;
+    width: min(900px, 100%);
     background-color: rgb(77, 78, 78);
     padding: 20px;
 }
@@ -19,7 +19,7 @@ body {
     margin-bottom: 20px;
 
     font-family: 'Digital Numbers', sans-serif;
-    font-size: 100px;
+    font-size: clamp(32px, 10vw, 100px);
 
     display: flex; 
     align-items: center;
@@ -64,19 +64,20 @@ body {
     height: 65%;
 }
 
-.sm-btns {
+.btns {
     height: 100px;
     width: 200px;
     font-size: 60px;
     border: none;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    transform-origin: 50% 50%;
 }
 
-.sm-btns:active {
+.btns:active {
     font-size: 65px;
-    height: 90px;
-    width: 190px;
+    transform: scale(0.9);
 }
 
 .op-btns {
@@ -86,4 +87,27 @@ body {
 .equal-btn {
     background-color: green;
     color: white;
+}
+
+@media (max-width: 900px) {
+    .mainBody {
+        width: 95%;
+        height: 97dvh;
+        padding: 10px;
+    }
+    .btns {
+        width: 90%;
+        height: 90%;
+        aspect-ratio: 1 / 1;
+        font-size: 30px;
+    }
+    .btns:active {
+        font-size: 35px;
+    }
+    .keypad {
+        height: 62%;
+    }
+    .displayscreen {
+        font-size: 55px;
+    }
 }

@@ -1,7 +1,7 @@
 
 // -------------Buttons Arrays--------------
 
-const buttons = ['','','DEL','AC','7' ,'8' ,'9' ,'+' ,'4' ,'5' ,'6' , '-' ,'3' ,'2' ,'1' ,'×' , '0','.', '=','÷'];
+const buttons = ['','','DEL','AC','7' ,'8' ,'9' ,'+' ,'4' ,'5' ,'6' , '-' ,'1' ,'2' ,'3' ,'×' , '0','.', '=','÷'];
 const operators = ['×', '÷', '+', '-'];
 
 let display = '';
@@ -30,7 +30,7 @@ function createButtons() {
         const btn = document.createElement('button');
 
         btn.textContent = ch;
-        btn.classList.add('sm-btns');
+        btn.classList.add('btns');
 
         btnLooks(ch, btn);
 
@@ -145,7 +145,6 @@ function evaluate() {
 // -----Zero Point---------------------
 
 function addpoint() {
-    console.log(pointAllowed)
     if (!pointAllowed) return;
 
     if (display.length === 0) {
@@ -207,7 +206,14 @@ document.addEventListener('keydown', (e)=> {
         addpoint();
     } else if (operators.includes(keyPressed) || !isNaN(keyPressed)) {
         buildExp(keyPressed);
+    } else if (keyPressed === '*') {
+        buildExp('×');
+    } else if (keyPressed === '/') {
+        buildExp('÷');
     }
 })
 
 createButtons();
+
+
+// fix divide and multiply keyboard buttons
