@@ -34,7 +34,7 @@ A responsive calculator built using HTML, CSS, and JavaScript with controlled in
 - math.js – Safe expression parsing and evaluation
 
 ## Preview 
-
+<img width="600" height="630" alt="cal" src="https://github.com/user-attachments/assets/dc84c22f-0b85-4828-bff7-ccfa98553965" />
 
 ## How to Run
 1. Clone the repository
