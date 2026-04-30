@@ -1,7 +1,6 @@
 # Calculator 
 
-A simple, responsive calculator built using HTML, CSS, and JavaScript.<br>
-It supports basic arithmetic operations and evaluates expressions.
+A responsive calculator built using HTML, CSS, and JavaScript with controlled input handling and safe expression evaluation.
 
 ## Features
 
@@ -10,23 +9,31 @@ It supports basic arithmetic operations and evaluates expressions.
     * Subtraction (−)
     * Multiplication (×)
     * Division (÷)
-- Expression evaluation
-- Clean and minimal user interface
-- Keyboard Input
+- Keyboard input support
 - Delete (DEL) and clear (AC) functionality
-- Handles common edge cases
-- Decimal number support
-- Round off small Decimal numbers and leading zeros
-- Display output in Scientific notation of very small or large numbers
+- Decimal number support with validation
+- Scientific notation for very small/large numbers
+- Real-time expression building
+- Safe evaluation using math.js (no eval)
+
+## Key Highlights
+
+- Custom input handling system to prevent invalid expressions
+- Separation between **display value** and **evaluation expression**
+- Prevention of:
+  - Multiple consecutive operators
+  - Multiple decimal points in a number
+  - Leading zero issues
+- Graceful handling of edge cases and invalid inputs
 
 ## Tech Stack
 
 - HTML5 – Structure
 - CSS3 – Styling and layout
 - JavaScript – Logic and functionality
+- math.js – Safe expression parsing and evaluation
 
 ## Preview 
-<img width="618" height="574" alt="Screenshot_2" src="https://github.com/user-attachments/assets/00e067d6-3208-4f32-a7b8-cc3baf16dec5" />
 
 
 ## How to Run
@@ -34,20 +41,23 @@ It supports basic arithmetic operations and evaluates expressions.
 2. Open the project folder
 3. Run the app: (Open index.html in your browser)
 
-## How It Works
+## Implementation Details
 
-- User input is captured via button clicks
-- The expression is built as a string
-- The result is computed using JavaScript’s built-in eval() function
+- User input is captured via buttons and keyboard
+- Expressions are built manually as a controlled string
+- Special symbols (×, ÷) are mapped internally to `*` and `/`
+- Evaluation is handled using math.js instead of `eval()` for safety and reliability
+- Errors are gracefully handled to prevent UI crashes
 
 
 ## Note
-This project uses JavaScript's eval() function to evaluate expressions.
+Initially implemented using 'eval()' but replaced with math.js to: <br>
 
-- Works well for simple calculator functionality
-- Not recommended for production applications due to security risks
+- Avoid security risks
+- Prevent unintended code execution
+- Enable better control over parsing and future extensibility
 
 ## Author
-Abdullah Ghazi <br>
+**Abdullah Ghazi** <br>
 GitHub: https://github.com/Abdullah-Ghazi0 <br>
-LinkedIn: https://www.linkedin.com/in/abdullah-ghazi-5b5077390/ <br>
+LinkedIn: https://www.linkedin.com/in/abdullah-ghazi-swe/ <br>

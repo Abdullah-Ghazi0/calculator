@@ -143,14 +143,22 @@ function clearAll(e) {
 // --------Evaluate Expression------------
 
 function evaluate() {
-    let result = eval(expression);
-    result = parseFloat(result.toPrecision(6));
+    
+    if (!expression || operators.includes(display.slice(-1))) {
+        return;
+    }
+    try {
+        let result = math.evaluate(expression);
+        result = parseFloat(result.toPrecision(6));
 
-    expression && (display = String(result));
-    expression = '';
-
-    display.includes('.') ? pointAllowed = false: pointAllowed = true;
-    updateUI();
+        display = String(result);
+        expression = '';
+        pointAllowed = !display.includes('.');
+        updateUI();
+    } catch (err) {
+        display = "Error";
+        updateUI();
+    }
 }
 
 // -----Zero Point---------------------
